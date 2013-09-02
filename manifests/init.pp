@@ -1,4 +1,5 @@
-define autossh (
+class autossh (
+	$name		 = "",
     $ensure      = "present",
     $ssh_host    = "",
     $ssh_port    = 22,
@@ -8,6 +9,11 @@ define autossh (
     $target_port = "",
     $local_port  = ""
 ) {
+
+	package { "autossh":
+		ensure => "present"
+	}
+	
     if ($ssh_host and $ssh_port and $ssh_user and $ssh_key and $target_host and $target_port and $local_port ) {
         $command = "/usr/bin/autossh ${ssh_user}@${ssh_host} -i ${ssh_key} -L ${local_port}:${target_host}:${target_port} -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -o LogLevel=quiet -N -f"
 
