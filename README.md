@@ -1,20 +1,30 @@
-# autossh
+# proudsourcing-autossh
 
-Puppet module to install and configure autossh (debian).
+Puppet module to create an autossh connection (ssh tunnel).
 
 
 ## Usage
 
-	class { autossh:
-		name		=> "mysql",
+	class { 'ps_autossh': }
+
+
+## Configuration example
+
+	ps_autossh::tunnel { 'example.name':
 		ensure      => "present",
-    	ssh_host    => "mymysqlhost.com",
+    	ssh_host    => "remote.host",
     	ssh_user    => "root",
     	ssh_key     => "/root/.ssh/id_rsa",
     	target_host => "127.0.0.1",
     	target_port => "3306",
     	local_port  => "3307"
 	}
+
+
+Default values:
+
+	$ensure			= present
+    $ssh_port		= '2'
 
 
 ## License
@@ -35,5 +45,6 @@ Puppet module to install and configure autossh (debian).
 
 ## Copyright
 
-	Proud Sourcing GmbH 2013
-	www.proudsourcing.de / www.proudcommerce.com
+	Proud Sourcing GmbH 2014
+	www.proudsourcing.de
+	
